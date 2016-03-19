@@ -1,5 +1,5 @@
 class MainController < ApplicationController
-  # def index
-  #   render 'home'
-  # end
+  def index
+    render 'home'
+  end
 end
