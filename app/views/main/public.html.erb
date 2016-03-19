@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet/less" href="style.less">
+	<script src="less.js"></script>
+</head>
+<body>
+	<header>
+		<div class="wrapper">
+			<img src="gfx/logo.png">
+			<span>Twitter Clone</span>
+			<form action="/logout">
+				<input type="submit" id="btnLogOut" value="Log Out">
+			</form>
+		</div>
+	</header>
+	<div id="content">
+		<div class="wrapper">
+			<% if flash['error'].present? %>
+				<div>
+					<p><%= flash['error'] %></p>
+				</div>
+			<% end %>
+
+			<div class="panel right">
+				<h1>Create a Ribbit</h1>
+				<p>
+					<form action="/tweet" method="post">
+						<textarea name="text" class="ribbitText"></textarea>
+						<input type="submit" value="Ribbit!">
+					</form>
+				</p>
+			</div>
+			<div id="ribbits" class="panel left">
+				<h1>Public Ribbits</h1>
+
+				<% @todos_tweets.each do |tweet| %>
+					<div class="ribbitWrapper">
+						<img class="avatar" src="gfx/user2.png">
+						<span class="name"><%= tweet.user.name %></span> @<%= tweet.user.username %> <span class="time"><%= time_ago_in_words(tweet.created_at) %></span>
+						<p>
+							<%= tweet.text %>
+						</p>
+					</div>
+				<% end %>
+
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="wrapper">
+			Ribbit - A Twitter Clone Tutorial<img src="gfx/logo-nettuts.png">
+		</div>
+	</footer>
+</body>
+</html>
