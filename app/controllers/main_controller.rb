@@ -10,10 +10,9 @@ class MainController < ApplicationController
   def login
     email = params[:email]
     pass = params[:password]
-    users = User.where(email: email, password: pass)
+    @user = User.find_by(email: email, password: pass)
 
-    if users.present?
-      @user = users.first
+    if @user
       redirect_to :home
     else
       redirect_to :root
